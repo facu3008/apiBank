@@ -5,6 +5,7 @@ import com.ironhack.proyect.finalproyect.model.users.AccountHolder;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -22,7 +23,7 @@ public abstract class Account {
     @JoinColumn(name = "secondaryOwner_id")
     private AccountHolder secondaryOwner;
 //    private BigDecimal minimumBalance;
-    private BigDecimal penaltyFee;
+    private BigDecimal penaltyFee =new BigDecimal(40).setScale(2, RoundingMode.HALF_DOWN);;
 //    private BigDecimal monthlyMaintenanceFee;
     private Date creationDate;
     private Status status;

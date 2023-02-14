@@ -4,16 +4,23 @@ import com.ironhack.proyect.finalproyect.enums.Status;
 import com.ironhack.proyect.finalproyect.model.users.AccountHolder;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 
 @Entity
 @PrimaryKeyJoinColumn(name="id")
 public class SavingsAccount extends Account{
 
-    private BigDecimal minimumBalance;
-    private BigDecimal interestRate;
+    @DecimalMin(value="100")
+    private BigDecimal minimumBalance = new BigDecimal("1000").setScale(2,RoundingMode.HALF_DOWN);
+    @DecimalMin(value="0")
+    @DecimalMax(value="0.5")
+    private BigDecimal interestRate = new BigDecimal("0.0025").setScale(4, RoundingMode.HALF_DOWN);
+
 
     public SavingsAccount() {
     }
@@ -25,6 +32,7 @@ public class SavingsAccount extends Account{
         this.minimumBalance = minimumBalance;
         this.interestRate = interestRate;
     }
+
 
     public BigDecimal getMinimumBalance() {
         return minimumBalance;
