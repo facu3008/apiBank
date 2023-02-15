@@ -6,15 +6,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 @Entity
 @PrimaryKeyJoinColumn(name="id")
 public class StudentAccount extends Account{
+    private final  LocalDate CREATION_DATE = LocalDate.now();
     public StudentAccount() {
     }
 
-    public StudentAccount(BigDecimal balance, String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal penaltyFee, Date creationDate, Status status) {
-        super(balance, secretKey, primaryOwner, secondaryOwner, penaltyFee, creationDate, status);
-    }
+
 
 }

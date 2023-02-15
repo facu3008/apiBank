@@ -9,6 +9,7 @@ import jakarta.validation.constraints.DecimalMin;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -21,14 +22,13 @@ public class SavingsAccount extends Account{
     @DecimalMax(value="0.5")
     private BigDecimal interestRate = new BigDecimal("0.0025").setScale(4, RoundingMode.HALF_DOWN);
 
-
+    private final  LocalDate CREATION_DATE = LocalDate.now();
     public SavingsAccount() {
     }
 
-    public SavingsAccount(BigDecimal balance, String secretKey, AccountHolder primaryOwner,
-                          AccountHolder secondaryOwner, BigDecimal penaltyFee, Date creationDate,
-                          Status status, BigDecimal minimumBalance, BigDecimal interestRate) {
-        super(balance, secretKey, primaryOwner, secondaryOwner, penaltyFee, creationDate, status);
+    public SavingsAccount(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner,
+                          LocalDate creationDate, BigDecimal minimumBalance, BigDecimal interestRate) {
+        super(secretKey, primaryOwner, secondaryOwner);
         this.minimumBalance = minimumBalance;
         this.interestRate = interestRate;
     }

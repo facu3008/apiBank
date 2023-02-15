@@ -9,6 +9,7 @@ import jakarta.validation.constraints.DecimalMin;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -16,20 +17,22 @@ import java.util.Date;
 public class CreditCardAccount extends Account {
     @DecimalMin(value = "100")
     @DecimalMax(value = "100000")
-    private BigDecimal creditLimit = new BigDecimal("100").setScale(2, RoundingMode.HALF_DOWN);
+    private BigDecimal creditLimit;
     @DecimalMin(value="0.10")
     @DecimalMax(value="0.20")
-    private BigDecimal interestRate = new BigDecimal("0.20").setScale(2, RoundingMode.HALF_DOWN);
+    private BigDecimal interestRate;
 
 
     public CreditCardAccount() {
     }
 
-    public CreditCardAccount(BigDecimal balance, String secretKey, AccountHolder primaryOwner,
-                             AccountHolder secondaryOwner, BigDecimal penaltyFee,
-                             Date creationDate, Status status, BigDecimal creditLimit,
-                             BigDecimal interestRate) {
-        super(balance, secretKey, primaryOwner, secondaryOwner, penaltyFee, creationDate, status);
+    public CreditCardAccount(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner) {
+        super(secretKey, primaryOwner, secondaryOwner);
+        this.creditLimit = new BigDecimal("100");
+        this.interestRate = new BigDecimal("0.20");
+    }
+    public CreditCardAccount(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal creditLimit, BigDecimal interestRate) {
+        super(secretKey, primaryOwner, secondaryOwner);
         this.creditLimit = creditLimit;
         this.interestRate = interestRate;
     }
