@@ -3,6 +3,8 @@ package com.ironhack.proyect.finalproyect.model.accounts;
 import com.ironhack.proyect.finalproyect.enums.Status;
 import com.ironhack.proyect.finalproyect.model.users.AccountHolder;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 
 import java.math.BigDecimal;
@@ -16,13 +18,17 @@ public class CheckingAccount extends Account{
     private  BigDecimal minimumBalance;
     private  BigDecimal monthlyMaintenanceFee;
     private final  LocalDate CREATION_DATE = LocalDate.now();
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
     public CheckingAccount() {
     }
 
-    public CheckingAccount(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner) {
+    public CheckingAccount(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner, Status status) {
         super(secretKey, primaryOwner, secondaryOwner);
         this.minimumBalance = new BigDecimal(250);
         this.monthlyMaintenanceFee  = new BigDecimal(12);
+        this.status = status;
     }
     public CheckingAccount(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal minimumBalance, BigDecimal monthlyMaintenanceFee) {
         super(secretKey, primaryOwner, secondaryOwner);
@@ -46,5 +52,17 @@ public class CheckingAccount extends Account{
 
     public void setMonthlyMaintenanceFee(BigDecimal monthlyMaintenanceFee) {
         this.monthlyMaintenanceFee = monthlyMaintenanceFee;
+    }
+
+    public LocalDate getCREATION_DATE() {
+        return CREATION_DATE;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

@@ -3,6 +3,8 @@ package com.ironhack.proyect.finalproyect.model.accounts;
 import com.ironhack.proyect.finalproyect.enums.Status;
 import com.ironhack.proyect.finalproyect.model.users.AccountHolder;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
@@ -23,14 +25,16 @@ public class SavingsAccount extends Account{
     private BigDecimal interestRate = new BigDecimal("0.0025").setScale(4, RoundingMode.HALF_DOWN);
 
     private final  LocalDate CREATION_DATE = LocalDate.now();
+    @Enumerated(EnumType.STRING)
+    private Status status;
     public SavingsAccount() {
     }
 
-    public SavingsAccount(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner,
-                          LocalDate creationDate, BigDecimal minimumBalance, BigDecimal interestRate) {
+    public SavingsAccount(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal minimumBalance, BigDecimal interestRate, Status status) {
         super(secretKey, primaryOwner, secondaryOwner);
         this.minimumBalance = minimumBalance;
         this.interestRate = interestRate;
+        this.status = status;
     }
 
 
@@ -49,4 +53,18 @@ public class SavingsAccount extends Account{
     public void setInterestRate(BigDecimal interestRate) {
         this.interestRate = interestRate;
     }
+
+
+    public LocalDate getCREATION_DATE() {
+        return CREATION_DATE;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
 }

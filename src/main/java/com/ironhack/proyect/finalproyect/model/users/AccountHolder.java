@@ -1,6 +1,6 @@
 package com.ironhack.proyect.finalproyect.model.users;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.ironhack.proyect.finalproyect.model.accounts.Account;
 import jakarta.persistence.*;
 
@@ -36,12 +36,19 @@ public class AccountHolder extends User {
     public AccountHolder() {
     }
 
-    public AccountHolder(String name, String password, Date dateOfBirth, Address primaryAddress, Address mailingAddress) {
+    public AccountHolder(String name, String password, Date dateOfBirth, Address primaryAddress) {
         super(name, password);
         this.dateOfBirth = dateOfBirth;
         this.primaryAddress = primaryAddress;
-        this.mailingAddress = mailingAddress;
+
     }
+
+    public AccountHolder(String name, String password) {
+        super(name, password);
+
+    }
+
+
 
     public Date getDateOfBirth() {
         return dateOfBirth;
@@ -59,11 +66,5 @@ public class AccountHolder extends User {
         this.primaryAddress = primaryAddress;
     }
 
-    public Address getMailingAddress() {
-        return mailingAddress;
-    }
 
-    public void setMailingAddress(Address mailingAddress) {
-        this.mailingAddress = mailingAddress;
-    }
 }

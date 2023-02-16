@@ -28,8 +28,8 @@ public abstract class Account {
 //    private BigDecimal minimumBalance;
     private final BigDecimal PENALTY_FEE =new BigDecimal(40);
 //    private BigDecimal monthlyMaintenanceFee;
-
-    private Status status;
+//    @Enumerated(EnumType.STRING)
+//    private Status status;
 
     public Account() {
     }
@@ -40,7 +40,7 @@ public abstract class Account {
         this.secretKey = secretKey;
         this.primaryOwner = primaryOwner;
         this.secondaryOwner = secondaryOwner;
-        this.status = Status.ACTIVE;
+//        this.status = Status.ACTIVE;
     }
 
     public Long getId() {
@@ -87,11 +87,11 @@ public abstract class Account {
         return PENALTY_FEE;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
+//    public Status getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(Status status) {
+//        this.status = status;
+//    }
 }
