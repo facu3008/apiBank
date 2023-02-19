@@ -1,5 +1,6 @@
 package com.ironhack.proyect.finalproyect.service.impl;
 
+import com.ironhack.proyect.finalproyect.model.accounts.Account;
 import com.ironhack.proyect.finalproyect.model.accounts.Checking;
 import com.ironhack.proyect.finalproyect.model.accounts.CreditCard;
 import com.ironhack.proyect.finalproyect.repository.accounts.CheckingRepository;
@@ -13,7 +14,9 @@ import java.util.List;
 public class CreditCardService {
     @Autowired
     CreditCardRepository creditCardRepository;
-
+    public Account createCreditCard(CreditCard creditCard){
+        return creditCardRepository.save(creditCard);
+    }
 
     public List<CreditCard> getCreditCardAccounts() {
         return creditCardRepository.findAll();

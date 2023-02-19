@@ -2,11 +2,7 @@ package com.ironhack.proyect.finalproyect.service.interfaces;
 
 
 import com.ironhack.proyect.finalproyect.controller.dto.AdminDTO;
-import com.ironhack.proyect.finalproyect.controller.dto.CheckingDTO;
-import com.ironhack.proyect.finalproyect.controller.dto.SavingsDTO;
-import com.ironhack.proyect.finalproyect.model.users.Admin;
-import com.ironhack.proyect.finalproyect.model.users.Role;
-import com.ironhack.proyect.finalproyect.model.users.User;
+
 
 import java.util.List;
 

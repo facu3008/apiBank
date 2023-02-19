@@ -56,6 +56,7 @@ public class AdminControllerImpl implements AdminController {
         return studentService.getStudentAccounts();
     }
 
+
     @GetMapping("/accounts/all/creditcard")
     @ResponseStatus(HttpStatus.OK)
     public List<CreditCard> getAllCreditCards() {
@@ -92,16 +93,13 @@ public class AdminControllerImpl implements AdminController {
 
 
 
+
     @GetMapping("/admin/{id}")
     public Admin findById(@PathVariable Long id) {
         return adminRepository.findById(id).get();
     }
 
-    @PostMapping("/admin")
-    @ResponseStatus(HttpStatus.CREATED)
-    public AdminDTO store(@RequestBody @Valid AdminDTO adminDTO) {
-        return adminService.save(adminDTO);
-    }
+
 
     @DeleteMapping("/accounts")
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -110,7 +108,44 @@ public class AdminControllerImpl implements AdminController {
     }
 
 
+    //    CREAR CUENTAS
 
+    @PostMapping("/accounts/new/checking")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Account createSavingsAccount(@RequestBody Checking checking){
+        return checkingService.createChecking(checking);
+    }
+
+
+    @PostMapping("/accounts/new/student")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Account createStudentAccount(@RequestBody Student student){
+        return studentService.createStudent(student);
+    }
+
+
+    @PostMapping("/accounts/new/credit")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Account createCreditCard(@RequestBody CreditCard creditCard){
+        return creditCardService.createCreditCard(creditCard);
+    }
+
+    @PostMapping("/accounts/new/savings")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Account createSavingsAccount(@RequestBody Savings savings){
+        return savingsService.createSavingsAccount(savings);
+    }
+
+
+
+
+
+
+    @PostMapping("/admin")
+    @ResponseStatus(HttpStatus.CREATED)
+    public AdminDTO store(@RequestBody @Valid AdminDTO adminDTO) {
+        return adminService.save(adminDTO);
+    }
 
 
 }
