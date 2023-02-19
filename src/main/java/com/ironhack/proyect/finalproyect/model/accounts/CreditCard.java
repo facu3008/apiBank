@@ -1,6 +1,5 @@
 package com.ironhack.proyect.finalproyect.model.accounts;
 
-import com.ironhack.proyect.finalproyect.enums.Status;
 import com.ironhack.proyect.finalproyect.model.users.AccountHolder;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
@@ -9,12 +8,10 @@ import jakarta.validation.constraints.DecimalMin;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @PrimaryKeyJoinColumn(name="id")
-public class CreditCardAccount extends Account {
+public class CreditCard extends Account {
     @DecimalMin(value = "100")
     @DecimalMax(value = "100000")
     private BigDecimal creditLimit;
@@ -23,15 +20,15 @@ public class CreditCardAccount extends Account {
     private BigDecimal interestRate;
 
 
-    public CreditCardAccount() {
+    public CreditCard() {
     }
 
-    public CreditCardAccount(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner) {
+    public CreditCard(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner) {
         super(secretKey, primaryOwner, secondaryOwner);
         this.creditLimit = new BigDecimal("100");
         this.interestRate = new BigDecimal("0.20");
     }
-    public CreditCardAccount(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal creditLimit, BigDecimal interestRate) {
+    public CreditCard(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal creditLimit, BigDecimal interestRate) {
         super(secretKey, primaryOwner, secondaryOwner);
         this.creditLimit = creditLimit;
         this.interestRate = interestRate;

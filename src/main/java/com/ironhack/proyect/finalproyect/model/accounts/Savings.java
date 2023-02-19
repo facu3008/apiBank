@@ -12,11 +12,10 @@ import jakarta.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @PrimaryKeyJoinColumn(name="id")
-public class SavingsAccount extends Account{
+public class Savings extends Account{
 
     @DecimalMin(value="100")
     private BigDecimal minimumBalance = new BigDecimal("1000").setScale(2,RoundingMode.HALF_DOWN);
@@ -27,10 +26,10 @@ public class SavingsAccount extends Account{
     private final  LocalDate CREATION_DATE = LocalDate.now();
     @Enumerated(EnumType.STRING)
     private Status status;
-    public SavingsAccount() {
+    public Savings() {
     }
 
-    public SavingsAccount(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal minimumBalance, BigDecimal interestRate, Status status) {
+    public Savings(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal minimumBalance, BigDecimal interestRate, Status status) {
         super(secretKey, primaryOwner, secondaryOwner);
         this.minimumBalance = minimumBalance;
         this.interestRate = interestRate;

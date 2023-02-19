@@ -21,6 +21,8 @@ public class AccountHolderControllerImpl implements AccountHolderController {
     @Autowired
     private AccountHolderService accountHolderService;
 
+//debo de crear un get para ver el balance
+    //debo de crear algo como para hacer la trasferencia
 
     @GetMapping("/account_holder")
     public List<AccountHolder> findAll() {
@@ -32,16 +34,13 @@ public class AccountHolderControllerImpl implements AccountHolderController {
         return accountHolderRepository.findById(id).get();
     }
 
+
+
     @PostMapping("/account_holder")
     @ResponseStatus(HttpStatus.CREATED)
     public AccountHolderDTO store(@RequestBody @Valid AccountHolderDTO accountHolderDTO) {
         return accountHolderService.saveAccountHolder(accountHolderDTO);
     }
-//    @PostMapping("/admin")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public AdminDTO store(@RequestBody @Valid AdminDTO adminDTO) {
-//        return adminService.saveAdmin(adminDTO);
-//    }
 
 
     @Override
@@ -49,3 +48,9 @@ public class AccountHolderControllerImpl implements AccountHolderController {
 
     }
 }
+
+/* el Administrador tiene que ver saldo de todos.
+modificar saldo
+crear cuentas. 1 post con condicionales o 4 post.
+
+ */

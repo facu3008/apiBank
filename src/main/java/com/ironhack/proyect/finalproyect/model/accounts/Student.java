@@ -7,19 +7,18 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
+
 @Entity
 @PrimaryKeyJoinColumn(name="id")
-public class StudentAccount extends Account{
+public class Student extends Account{
     private final  LocalDate CREATION_DATE = LocalDate.now();
     @Enumerated(EnumType.STRING)
     private Status status;
-    public StudentAccount() {
+    public Student() {
     }
 
-    public StudentAccount(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner, Status status) {
+    public Student(String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner, Status status) {
         super(secretKey, primaryOwner, secondaryOwner);
         this.status = status;
     }
