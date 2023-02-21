@@ -7,9 +7,9 @@ import com.ironhack.proyect.finalproyect.controller.dto.AdminDTO;
 import java.util.List;
 
 public interface AdminService {
+    AdminDTO save(AdminDTO adminDTO);
 //    Admin getAdminById(Long id);
 //    List<Admin> getAdmins();
-    AdminDTO save(AdminDTO adminDTO);
 //    SavingsDTO save(SavingsDTO savingsDTO);
 //    CheckingDTO save(CheckingDTO checkingDTO);
 

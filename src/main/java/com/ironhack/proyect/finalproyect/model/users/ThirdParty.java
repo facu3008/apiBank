@@ -16,6 +16,9 @@ public class ThirdParty extends User {
         this.hashedKey = hashedKey;
     }
 
+    public ThirdParty(String name, String encodedPassword) {
+    }
+
     public String getHashedKey() {
         return hashedKey;
     }

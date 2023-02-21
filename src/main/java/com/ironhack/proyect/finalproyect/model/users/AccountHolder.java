@@ -48,6 +48,8 @@ public class AccountHolder extends User {
 
     }
 
+    public AccountHolder(Long id, String name) {
+    }
 
 
     public Date getDateOfBirth() {

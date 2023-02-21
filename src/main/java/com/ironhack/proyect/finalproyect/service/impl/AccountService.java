@@ -17,7 +17,7 @@ public class AccountService {
     @Autowired
     AccountHolderRepository accountHolderRepository;
 
-    public List<Account> findAll() {
+    public List<Account> getAccounts() {
         return accountRepository.findAll();
     }
 
@@ -31,5 +31,12 @@ public class AccountService {
     public void deleteAccount(Long id){
         accountRepository.deleteById(id);
     }
+
+
+
+
+
+
+
 
 }

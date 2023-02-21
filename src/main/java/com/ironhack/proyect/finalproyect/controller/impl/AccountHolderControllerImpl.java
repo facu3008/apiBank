@@ -4,8 +4,10 @@ import com.ironhack.proyect.finalproyect.controller.dto.AccountHolderDTO;
 import com.ironhack.proyect.finalproyect.controller.dto.AdminDTO;
 import com.ironhack.proyect.finalproyect.controller.interfaces.AccountHolderController;
 import com.ironhack.proyect.finalproyect.model.users.AccountHolder;
+import com.ironhack.proyect.finalproyect.model.users.Address;
 import com.ironhack.proyect.finalproyect.repository.users.AccountHolderRepository;
-import com.ironhack.proyect.finalproyect.service.interfaces.AccountHolderService;
+import com.ironhack.proyect.finalproyect.service.impl.AccountHolderService;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class AccountHolderControllerImpl implements AccountHolderController {
+public class AccountHolderControllerImpl {
 
     @Autowired
     private AccountHolderRepository accountHolderRepository;
@@ -34,19 +36,12 @@ public class AccountHolderControllerImpl implements AccountHolderController {
         return accountHolderRepository.findById(id).get();
     }
 
-
-
-    @PostMapping("/account_holder")
-    @ResponseStatus(HttpStatus.CREATED)
-    public AccountHolderDTO store(@RequestBody @Valid AccountHolderDTO accountHolderDTO) {
-        return accountHolderService.saveAccountHolder(accountHolderDTO);
+    @PutMapping("/update-address")
+    @ResponseStatus(HttpStatus.OK)
+    public AccountHolder updateAddressInfo(@RequestParam Long id, @RequestBody Address address){
+        return accountHolderService.updateAddressInfo(id, address);
     }
 
-
-    @Override
-    public void deleteAccountHolder(Long accountHolderId) {
-
-    }
 }
 
 /* el Administrador tiene que ver saldo de todos.

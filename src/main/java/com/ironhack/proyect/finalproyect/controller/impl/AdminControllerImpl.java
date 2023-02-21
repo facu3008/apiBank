@@ -39,9 +39,16 @@ public class AdminControllerImpl implements AdminController {
     @Autowired
     SavingsService savingsService;
 
+    @Autowired
+    AccountHolderService accountHolderService;
+
+    @Autowired
+    UserServiceImpl userService;
+
+    // ************* VER CUENTAS ************
     @GetMapping("/accounts/all")
-    public List<Account> getAccounts() {
-        return accountService.findAll();
+    public List<Account> getAllAccounts() {
+        return accountService.getAccounts();
     }
 
     @GetMapping("/accounts/all/checking")
@@ -81,6 +88,8 @@ public class AdminControllerImpl implements AdminController {
         return accountService.findByName(userName);
     }
 
+
+// ************* VER Balance de las cuentas ************
 
 
 
@@ -136,16 +145,29 @@ public class AdminControllerImpl implements AdminController {
         return savingsService.createSavingsAccount(savings);
     }
 
+    //    CREAR Usuarios
 
-
-
-
-
-    @PostMapping("/admin")
+    @PostMapping("/user/new/admin")
     @ResponseStatus(HttpStatus.CREATED)
     public AdminDTO store(@RequestBody @Valid AdminDTO adminDTO) {
         return adminService.save(adminDTO);
     }
 
+    @PostMapping("/users/new/accountholder")
+    @ResponseStatus(HttpStatus.CREATED)
+    public AccountHolder createAccountHolder(@RequestBody AccountHolder accountHolder){
+        return accountHolderService.saveAccountHolder(accountHolder);
+    }
+
+
+
+
+    //    Listar usuarios
+
+    @GetMapping("/users/all")
+    @ResponseStatus(HttpStatus.OK)
+    public List<User> getUsers(){
+        return userService.getUsers();
+    }
 
 }

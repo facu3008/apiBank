@@ -45,26 +45,28 @@ public class AdminServiceImpl implements AdminService {
 
     public AdminDTO save(AdminDTO adminDTO) {
         String encodedPassword = passwordEncoder.encode(adminDTO.getPassword());
-//        Role adminRole = new Role("ADMIN");
-        Role role = roleRepository.findByRole("ADMIN");
+        Role adminRole = new Role("ADMIN");
+//        Role role = roleRepository.findByRole("ADMIN");
         Admin admin1 = new Admin(adminDTO.getName(), encodedPassword);
-        admin1.getRoles().add(role);
+        admin1.setRoles(List.of(adminRole));
+//        admin1.getRoles().add(role);
         adminRepository.save(admin1);
         AdminDTO returnedAdminDTO = new AdminDTO(admin1.getId(),admin1.getName());
         return returnedAdminDTO;
     }
 
-//    @Override
-//    public void deleteAdmin(Long admin) {
-//
-//    }
+    public Admin addAdmin(Admin admin){
 
-//
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+        Admin newAdmin = adminRepository.save(admin);
+        Role role = roleRepository.findByRole("ADMIN");
+        // Add the role to the user's role collection
+        newAdmin.getRoles().add(role);
+        adminRepository.save(newAdmin);
+        //roleRepository.save(new Role("ADMIN", newAdmin));
+
+        return newAdmin;
+    }
 
 
-//    @Override
-//    public void deleteAdmin(Long adminId) {
-//        Admin admin = getAdminById(adminId);
-//        adminRepository.delete(admin);
-//    }
 }
